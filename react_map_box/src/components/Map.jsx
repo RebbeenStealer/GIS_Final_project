@@ -1,14 +1,23 @@
-import { useRef } from "react";
-import useMap from '../hooks/useMap'
-import { mapConfig } from "../config/mapConfig";
+import "react";
+import { Map } from "react-kakao-maps-sdk"
 
+const kakaoMap = () => {
 
-const Map = () => {
-    const mapContainerRef = useRef(null);
+    return (
+        <Map
+            id = "map"
+            center = {{
+                lat: 33.450701,
+                lng: 126.570667, 
+            }}
+            style = {{
+                width : "100%",
+                height : "100vh"
+            }}
+            level = {3}
+        />
+    );
 
-    useMap(mapContainerRef , mapConfig.defaultStyle , mapConfig);
-
-    return <div ref = {mapContainerRef} style={{width : '100%' , height: '100vh'}}/>
 }
 
-export default Map
+export default kakaoMap;
