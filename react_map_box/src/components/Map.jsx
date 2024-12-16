@@ -1,5 +1,5 @@
-import "react";
 import { Map } from "react-kakao-maps-sdk"
+// import { mapStyle } from "../styles/mapStyle.css";
 
 const kakaoMap = () => {
 
@@ -15,7 +15,8 @@ const kakaoMap = () => {
                 height : "100vh"
             }}
             level = {3}
-        />
+        >
+        </Map>
     );
 
 }
