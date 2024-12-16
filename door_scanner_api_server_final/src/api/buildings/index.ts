@@ -3,7 +3,7 @@ import ctrl from './building.ctrl'
 
 const router = express.Router();
 
-
+router.get('/pathfinder', ctrl.getPathfinder);
 router.get('/bldg_nm',ctrl.getBuildingLikesBldgNmLimit50)
 //http://localhost:8080/buildings/bldg_nm?bldg_nm=빌딩
 router.get('/bldg_id/:bldg_id',ctrl.getBuildingByBldgid);
