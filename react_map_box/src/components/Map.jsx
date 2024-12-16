@@ -1,5 +1,5 @@
 import { Map } from "react-kakao-maps-sdk"
-// import { mapStyle } from "../styles/mapStyle.css";
+import "../styles/mapStyle.css";
 
 const kakaoMap = () => {
 
@@ -8,7 +8,7 @@ const kakaoMap = () => {
             id = "map"
             center = {{
                 lat: 33.450701,
-                lng: 126.570667, 
+                lng: 126.570667,
             }}
             style = {{
                 width : "100%",
