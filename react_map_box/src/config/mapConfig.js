@@ -1,6 +1,12 @@
-export const mapConfig = {
-    defaultStyle : 'mapbox://styles/mapbox/light-v11',
-    initialCenter : [126.878302 , 37.494589],
-    initialZoom : 12, 
-    dafaultLanguage: 'ko',
+import { useKakaoLoader as useKakaoLoaderOrigin } from "react-kakao-maps-sdk"
+
+const mapConfig = {
+    useKakaoLoader(){
+        useKakaoLoaderOrigin({
+            appkey: "d4bc7820de70adb2bcf9139fe7e934d3",
+            libraries: ["clusterer", "drawing", "services"]
+        })
+    }
 }
+
+export default mapConfig;

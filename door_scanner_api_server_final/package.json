@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "src/bin/www.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/bin/www.js",
-    "dev": "nodemon --exec ts-node src/bin/www.ts | pino-pretty",
+    "test": "echo \"Error: no test specified\" && exit 1",  
+    "start": "node dist/bin/www.js",  
+    "dev": "concurrently \"nodemon --exec ts-node src/bin/www.ts | pino-pretty\" \"npm run start-react\"",  
+    "start-react": "cd ../react_map_box && npm start", 
     "build": "tsc"
   },
   "author": "",
@@ -17,6 +18,7 @@
     "@types/pg": "^8.11.10",
     "@typescript-eslint/eslint-plugin": "^8.16.0",
     "@typescript-eslint/parser": "^8.16.0",
+    "concurrently": "^9.1.0",
     "helmet": "^8.0.0",
     "nodemon": "^3.1.7",
     "pino": "^9.5.0",
@@ -28,6 +30,7 @@
   "dependencies": {
     "axios": "^1.7.9",
     "compression": "^1.7.5",
+    "cors": "^2.8.5",
     "express": "^4.21.1",
     "pg": "^8.13.1"
   }
