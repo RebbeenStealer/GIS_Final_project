@@ -5,10 +5,21 @@ import ctrl from '../controller/kakao.ctrl'
 
 const router = express.Router();
 
-router.get('/address', ctrl.getCoordinatesFromAddress) // 주소를 좌표로 변환
-router.get('/region', ctrl.getRegionCode) // 좌표를 행정구역정보로 변환
-router.get('/geo', ctrl.getGeo) // 좌표를 주소로 변환
+// 주소를 좌표로 반환 ex) /api/address?query=전북 삼성동 100
+router.get('/address', ctrl.getCoordinatesFromAddress)
+
+// 좌표를 주소로 변환하기 ex) /api/geo?x=126.99597495347&y=35.9766482774572
+router.get('/geo', ctrl.getAddressFromCoordinates)
+
+// 좌표를 행정구역으로 변환 ex) /api/region?x=126.99597495347&y=35.9766482774572
+router.get('/region', ctrl.getRegionCode) 
+
+// 카테고리로 장소 검색 ex) /api/category?category_group_code=CS2&x=126.99597495347&y=35.9766482774572&region=200
+// category_group : 카테고리(필수), {x, y} : 중심좌표, region: 범위(meter)
 router.get('/category', ctrl.getLocationsByCategory) // 카테고리로 장소 검색
+
+// 키워드 장소 검색 ex) /api/keyword?query=CU&x=126.99597495347&y=35.9766482774572&region=200
+// query : 키워드(필수), {x, y} : 중심좌표, region: 범위(meter)
 router.get('/keyword', ctrl.getLocationsByKeyword) // 키워드로 장소 검색
 
 

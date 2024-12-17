@@ -23,7 +23,7 @@ class KakaoService {
     return this.request('/geo/coord2regioncode.json', { x, y });
   }
 
-  async getGeo(x: string, y: string) {
+  async getAddressFromCoordinates(x: string, y: string) {
     return this.request('/geo/coord2address.json', { x, y, input_coord: 'WGS84' });
   }
 

@@ -14,11 +14,11 @@ const getRegionCode = async (req: Request, res: Response): Promise<void> => {
     }
 };
 
-const getGeo = async (req: Request, res: Response): Promise<void> => {
+const getAddressFromCoordinates = async (req: Request, res: Response): Promise<void> => {
     const { x, y } = req.query; 
 
     try {
-        const response = await kakaoService.getGeo(x as string, y as string);
+        const response = await kakaoService.getAddressFromCoordinates(x as string, y as string);
         res.status(200).json(response.data);
     } catch (error) {
         console.error(error);
@@ -97,7 +97,7 @@ const getLocationsByKeyword = async (req: Request, res: Response): Promise<void>
 
 export default {
   getRegionCode,
-  getGeo,
+  getAddressFromCoordinates,
   getCoordinatesFromAddress,
   getLocationsByCategory,
   getLocationsByKeyword
