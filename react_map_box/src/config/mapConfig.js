@@ -3,7 +3,7 @@ import { useKakaoLoader as useKakaoLoaderOrigin } from "react-kakao-maps-sdk"
 const mapConfig = {
     useKakaoLoader(){
         useKakaoLoaderOrigin({
-            appkey: "133a147821bce4bce58bbc4cb446e46b",
+            appkey: "d4bc7820de70adb2bcf9139fe7e934d3",
             libraries: ["clusterer", "drawing", "services"]
         })
     }
