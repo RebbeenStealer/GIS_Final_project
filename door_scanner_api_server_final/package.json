@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "src/bin/www.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",  
-    "start": "node dist/bin/www.js",  
-    "dev": "concurrently \"nodemon --exec ts-node src/bin/www.ts | pino-pretty\" \"npm run start-react\"",  
-    "start-react": "cd ../react_map_box && npm start", 
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/bin/www.js",
+    "dev": "concurrently \"nodemon --exec ts-node src/bin/www.ts | pino-pretty\" \"npm run start-react\"",
+    "start-react": "cd ../react_map_box && nodemon --exec npm start",
     "build": "tsc"
   },
   "author": "",
@@ -31,6 +31,7 @@
     "axios": "^1.7.9",
     "compression": "^1.7.5",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "pg": "^8.13.1"
   }
