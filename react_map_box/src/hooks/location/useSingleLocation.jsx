@@ -15,15 +15,15 @@ const useSingleLocation = () => {
         (position) => {
           const { latitude, longitude } = position.coords;
           setLocation({ lat: latitude, lng: longitude });
-          console.log("Location fetched:", { lat: latitude, lng: longitude });
+          // console.log("Location fetched:", { lat: latitude, lng: longitude });
         },
         (err) => {
-          console.error(`Error (${err.code}): ${err.message}`);
+          // console.error(`Error (${err.code}): ${err.message}`);
           setError(`Error (${err.code}): ${err.message}`);
         },
         {
           enableHighAccuracy: true,
-          timeout: 10000, // 10 seconds
+          timeout: 10000,
           maximumAge: 0,
         }
       );
