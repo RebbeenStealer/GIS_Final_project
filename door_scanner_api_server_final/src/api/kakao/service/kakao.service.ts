@@ -31,12 +31,12 @@ class KakaoService {
     return this.request('/search/address.json', { query });
   }
 
-  async getLocationsByCategory(category_group_code: string, y: string, x: string, radius?: number) {
-    return this.request('/search/category.json', { category_group_code, y, x, radius });
-  }
+  async getLocationsByCategory(category_group_code: string, y: string, x: string, radius?: number, page?: number) {
+    return this.request('/search/category.json', { category_group_code, y, x, radius, page });
+}
   
-  async getLocationsByKeyword(query: string, category_group_code?: string, y?: string, x?: string,  radius?: number) {
-    return this.request('/search/keyword.json', { query, category_group_code, y, x, radius });
+  async getLocationsByKeyword(query: string, category_group_code?: string, y?: string, x?: string,  radius?: number, page?: number) {
+    return this.request('/search/keyword.json', { query, category_group_code, y, x, radius, page });
   }
 }
 

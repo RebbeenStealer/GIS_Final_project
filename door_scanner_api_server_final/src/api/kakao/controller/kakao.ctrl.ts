@@ -42,10 +42,11 @@ const getCoordinatesFromAddress = async (req: Request, res: Response): Promise<v
 };
 
 const getLocationsByCategory = async (req: Request, res: Response): Promise<void> => {
-    const { category_group_code, y, x, radius } = req.query as { 
+    const { category_group_code, y, x, page, radius } = req.query as { 
         category_group_code: string; 
-        y: string,
-        x: string
+        y: string;
+        x: string;
+        page?: string; // page는 선택적이며 기본값을 설정할 것입니다.
         radius?: string;
     };
 
@@ -56,7 +57,7 @@ const getLocationsByCategory = async (req: Request, res: Response): Promise<void
     }
 
     try {
-        const response = await kakaoService.getLocationsByCategory(category_group_code, y, x, radius ? Number(radius) : undefined);
+        const response = await kakaoService.getLocationsByCategory(category_group_code, y, x, radius ? Number(radius) : undefined, Number(page));
         res.status(200).json(response.data);
     } catch (error) {
         console.error(error);
@@ -64,12 +65,14 @@ const getLocationsByCategory = async (req: Request, res: Response): Promise<void
     }
 };
 
+
 const getLocationsByKeyword = async (req: Request, res: Response): Promise<void> => {
-    const { query, category_group_code, y, x, radius } = req.query as { 
+    const { query, category_group_code, y, x,page, radius } = req.query as { 
         query: string;
         category_group_code?: string;
         y?: string;
-        x?: string; 
+        x?: string;
+        page?: string;
         radius?: string;
     };
 
@@ -83,7 +86,7 @@ const getLocationsByKeyword = async (req: Request, res: Response): Promise<void>
     const categoryGroupCode = category_group_code || ''; // 기본값 설정 (필요시)
 
     try {
-        const response = await kakaoService.getLocationsByKeyword(query, categoryGroupCode, y, x, radius ? Number(radius) : undefined);
+        const response = await kakaoService.getLocationsByKeyword(query, categoryGroupCode, y, x, radius? Number(radius) : undefined, Number(page));
         res.status(200).json(response.data);
     } catch (error) {
         console.error(error);

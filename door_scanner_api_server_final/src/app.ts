@@ -3,21 +3,23 @@ import compression from 'compression'
 import helmet from 'helmet'
 import path from 'path'
 import mountRouters from './api/router'
+import cors from 'cors'
 
 const app = express()
-
+app.use(cors()); 
 app.use(express.json());
 
 app.use(helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        imgSrc: ["'self'", "https://t1.daumcdn.net", "https://mts.daumcdn.net"], // 이미지 출처 추가
-        scriptSrc: ["'self'", "https://dapi.kakao.com", "http://dapi.kakao.com", "https://t1.daumcdn.net"], // 스크립트 출처 추가
-        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"], // 필요 시 스타일 출처 추가
-      },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"], // 기본 출처
+      imgSrc: ["'self'", "https://t1.daumcdn.net", "https://mts.daumcdn.net", "https://s1.daumcdn.net", "https://dapi.kakao.com"], // 이미지 출처 추가
+      scriptSrc: ["'self'", "https://dapi.kakao.com", "http://dapi.kakao.com", "https://t1.daumcdn.net", "https://s1.daumcdn.net"], // 스크립트 출처 추가
+      styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"], // 스타일 출처 추가
+      frameSrc: ["'self'", "https://dapi.kakao.com"], // iframe을 사용하는 경우 추가
     },
-  }));
+  },
+}));
 
 app.use(compression());
 

@@ -1,12 +1,12 @@
 import { Express } from "express";
-import  building from './buildings/index';
+import  kakao from './kakao/index';
 
 // const mountRouters = (app:Express) => {
 //     app.use('/buildings',building)
 // }
 
 const mountRouters = (app:Express) => {
-    app.use('/api', building)
+    app.use('/api', kakao)
 }
 
 export default mountRouters;
