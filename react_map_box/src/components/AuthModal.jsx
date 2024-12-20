@@ -36,7 +36,6 @@ const AuthModal = ({ isOpen, onClose }) => {
         <button
           onClick={() => setIsSignup(!isSignup)}
           style={{
-            marginTop: "10px",
             padding: "5px 10px",
             backgroundColor: "#ddd",
             border: "none",

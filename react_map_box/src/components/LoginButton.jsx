@@ -14,21 +14,6 @@ const LoginButton = () => {
         });
     };
 
-//   const handleLogin = () => {
-//     if (window.Kakao && window.Kakao.Auth) {
-//       window.Kakao.Auth.login({
-//         success: (authObj) => {
-//           console.log("카카오 로그인 성공:", authObj);
-//           alert("카카오 로그인에 성공했습니다!");
-//         },
-//         fail: (err) => {
-//           console.error("카카오 로그인 실패:", err);
-//           alert("카카오 로그인에 실패했습니다.");
-//         },
-//       });
-//     }
-//   };
-
   return (
     <button
       onClick={handleLogin}
@@ -43,7 +28,7 @@ const LoginButton = () => {
     >
       카카오로 로그인
     </button>
+    
   );
 };
-
 export default LoginButton;
