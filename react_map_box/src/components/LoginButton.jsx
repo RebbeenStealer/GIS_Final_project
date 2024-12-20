@@ -10,7 +10,7 @@ const LoginButton = () => {
 
     const handleLogin = () => {
         window.Kakao.Auth.authorize({
-            redirectUri: "http://localhost:5174/login",
+            redirectUri: "http://localhost:5173/login",
         });
     };
 
