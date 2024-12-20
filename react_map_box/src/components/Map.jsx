@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import "../styles/mapStyle.css";
 import useSingleLocation from "../hooks/location/useSingleLocation";
+import AuthModal from "../components/AuthModal";
 
 const KakaoMap = () => {
   const { location, error } = useSingleLocation();
   const defaultCenter = { lat: 37.5665, lng: 126.9780 };
   const [center, setCenter] = useState(defaultCenter);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (location) {
@@ -19,6 +21,7 @@ const KakaoMap = () => {
   }
 
   return (
+    <>
     <Map
       id="map"
       center={center}
@@ -28,9 +31,28 @@ const KakaoMap = () => {
       }}
       level={3}
     >
-      <MapMarker position={center}>
-      </MapMarker>
+      <MapMarker position={center}></MapMarker>
+      {/* 로그인/회원가입 버튼 */}
+      <button
+      onClick={() => setIsModalOpen(true)}
+      style={{
+        position: "absolute",
+        top: "10px",
+        right: "10px",
+        background: "#FEE500",
+        border: "none",
+        padding: "10px 15px",
+        borderRadius: "5px",
+        cursor: "pointer",
+        zIndex: 1000,
+      }}
+      >
+        로그인 | 회원가입
+      </button>
     </Map>
+    {/* 모달 렌더링 */}
+    <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+    </>
   );
 };
 
