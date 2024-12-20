@@ -1,5 +1,6 @@
 import { Request , Response } from "express";
 import buildingDao from './building.dao';
+import axios from 'axios'
 
 const getBuildingByBldgid = async (req:Request , res: Response): Promise<void> => {
     const bldg_id = Number(req.params.bldg_id);
@@ -55,8 +56,40 @@ const getBuildingLikesBldgNmLimit50 = async (req:Request , res: Response): Promi
         res.status(500).json({success:false , message:errorMessage});
     }
 }
+
+const getPathfinder = async (req: Request, res: Response): Promise<void> => {
+    const { startY, startX, endY, endX, option, service, srid } = req.query;
+
+    if (!startY || !startX || !endY || !endX) {
+        res.status(400).json({ success: false, message: "Start and end coordinates are required" });
+        return;
+    }
+
+    try {
+        const response = await axios.get(
+            'https://gis-v2-dot-lbstech-korea-service.an.r.appspot.com/v2/gcd/pathfinder', {
+            params: {
+                startY,
+                startX,
+                endY,
+                endX,
+                option,
+                service,
+                srid: srid || 4326 // SRID의 기본값을 4326으로 설정
+            }
+        });
+
+        res.json({ success: true, message: "Pathfinder data fetched successfully", data: response.data });
+    } catch (error) {
+        console.error("Error in ctrl getPathfinder:", error);
+        const errorMessage = (error as Error).message;
+        res.status(500).json({ success: false, message: errorMessage });
+    }
+};
+
 export default {
     getBuildingByBldgid,
     getBuildingBySigCdLimit20,
-    getBuildingLikesBldgNmLimit50
+    getBuildingLikesBldgNmLimit50,
+    getPathfinder
 }

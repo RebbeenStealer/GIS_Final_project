@@ -37,7 +37,7 @@ const SignupForm = () => {
         placeholder="핸드폰번호"
         value={formData.phonenumber}
         onChange={handleChange}
-        required
+        requiredg
       />
       <input
         type="email"
