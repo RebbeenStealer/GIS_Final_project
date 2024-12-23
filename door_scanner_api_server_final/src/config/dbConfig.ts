@@ -10,4 +10,4 @@ const dbConfig = {
 
 export const db = new pg.Pool(dbConfig)
 
-export const schema = 'seoyj'
+export const schema = 'kej'

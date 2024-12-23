@@ -1,10 +1,10 @@
-import {db , schema} from '../../config/dbConfig';
+import { db , schema } from '../../config/dbConfig';
 import { QueryResult } from 'pg';
 import { IBldg } from './building.model';
 
 const getBuildingByBldgid = async (bldg_id : number) : Promise<IBldg[]> => {
     const query = `
-        SELECT 
+        SELECT
             bldg_id,
             bldg_sn,
             rds_sn,
