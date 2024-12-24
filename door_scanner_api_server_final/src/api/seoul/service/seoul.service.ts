@@ -5,6 +5,10 @@ dotenv.config();
 class SeoulService {
   private readonly API_KEY: string;
   private readonly BASE_URL: string = 'http://openapi.seoul.go.kr:8088';
+<<<<<<< Updated upstream
+=======
+  private cityData: any = null;
+>>>>>>> Stashed changes
 
   constructor() {
     this.API_KEY = process.env.SEOUL_API_KEY || '';
@@ -20,9 +24,46 @@ class SeoulService {
   }
 
   async getCityData(query: string) {
+<<<<<<< Updated upstream
     const endpoint = `/citydata/1/5/${encodeURIComponent(query)}`;
     return this.request(endpoint);
   }
+=======
+    const endpoint = `/citydata/1/1/${encodeURIComponent(query)}`;
+    return this.request(endpoint);
+  }
+
+  async fetchAndStoreCityData(query: string) {
+    try {
+      const response = await this.getCityData(query);
+      this.cityData = response.data;
+      console.log('City data fetched and stored successfully');
+      return this.cityData;
+    } catch (error) {
+      console.error('Error fetching city data:', error);
+      throw error;
+    }
+  }
+
+  async getWeather(query: string) {
+    try {
+      const cityData = await this.fetchAndStoreCityData(query);
+
+      const weatherData = cityData?.CITYDATA?.WEATHER_STTS?.[0];
+
+      if (!weatherData) {
+        throw new Error('Weather data not found');
+      }
+
+      return weatherData;
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      throw error;
+    }
+  }
+
+  
+>>>>>>> Stashed changes
 }
 
 export default new SeoulService();
